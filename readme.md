@@ -3,6 +3,12 @@
 1) Add the ezproj directory to path
 2) Run ezproj from the command line
 
+# Supported frameworks
+
+Angular  
+React  
+Svelte
+
 # Use
 
 ezproj [project type] [project name]
@@ -12,7 +18,7 @@ ezproj [project type] [project name]
 ezproj svelte exampleSvelteProject  
 ezproj s exampleSvelteProject  
 ezproj angular exampleAngularProject  
-ezproj r exampleReactProject  
+ezproj r exampleReactProject
 
 # Requirements
 
