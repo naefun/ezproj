@@ -26,7 +26,7 @@ def create_project(project_type, project_name):
 
 def fix_path(path):
     fixed_path = ""
-    for i in sys.argv[3]:
+    for i in path:
         if i == "\\":
             fixed_path += "/"
         else:
