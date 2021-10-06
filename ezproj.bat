@@ -1,1 +1,1 @@
-python ezproj.py %1 %2
+python "%~dp0/ezproj.py" %1 %2 "%cd%"

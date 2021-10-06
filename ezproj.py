@@ -20,14 +20,23 @@ def command_selector(project_type, project_name):
 def create_project(project_type, project_name):
     try:
         subprocess.run(command_selector(project_type, project_name), shell=True)
-        subprocess.run(["code", "./"+project_name], shell=True)
+        subprocess.run(["code", project_name], shell=True)
     except subprocess.SubprocessError as err:
         print(err)
 
+def fix_path(path):
+    fixed_path = ""
+    for i in sys.argv[3]:
+        if i == "\\":
+            fixed_path += "/"
+        else:
+            fixed_path += i
+    return fixed_path
 #=======================================================================
 
 def main():
-    create_project(sys.argv[1], sys.argv[2])
+    path = fix_path(sys.argv[3])
+    create_project(sys.argv[1], path+"/"+sys.argv[2])
 
 main()
 
