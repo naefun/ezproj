@@ -21,7 +21,7 @@ def create_project(project_type, project_name):
     try:
         subprocess.run(command_selector(project_type, project_name), shell=True)
         subprocess.run(["code", "./"+project_name], shell=True)
-    except subprocess.CalledProcessError as err:
+    except subprocess.SubprocessError as err:
         print(err)
 
 #=======================================================================
