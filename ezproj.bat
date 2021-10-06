@@ -1,0 +1,1 @@
+python ezproj.py %1 %2
