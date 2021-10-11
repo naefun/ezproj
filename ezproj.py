@@ -4,22 +4,22 @@ import subprocess, sys
 
 #=======================================================================
 
-def command_selector(project_type, project_name):
+def command_selector(project_type, project_name, path_prefix):
     project_command = []
     
     match project_type:
         case "angular" | "a" | "ang" | "ng":
             project_command = ["ng", "new", project_name, "--routing=true", "--style=css"]
         case "react" | "r":
-            project_command = ["npx", "create-react-app", project_name]
+            project_command = ["npx", "create-react-app", path_prefix+project_name]
         case "svelte" | "s" | "sv":
-            project_command = ["npx", "degit", "sveltejs/template", project_name]
+            project_command = ["npx", "degit", "sveltejs/template", path_prefix+project_name]
 
     return project_command
 
-def create_project(project_type, project_name):
+def create_project(project_type, project_name, path_prefix):
     try:
-        subprocess.run(command_selector(project_type, project_name), shell=True)
+        subprocess.run(command_selector(project_type, project_name, path_prefix), shell=True)
         subprocess.run(["code", project_name], shell=True)
     except subprocess.SubprocessError as err:
         print(err)
@@ -35,8 +35,12 @@ def fix_path(path):
 #=======================================================================
 
 def main():
+    project_type = sys.argv[1]
+    project_name = sys.argv[2]
     path = fix_path(sys.argv[3])
-    create_project(sys.argv[1], path+"/"+sys.argv[2])
+    path_prefix = path+"/"
+
+    create_project(project_type, project_name, path_prefix)
 
 main()
 
